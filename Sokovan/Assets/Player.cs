@@ -5,26 +5,30 @@ using UnityEngine;
 public class Player : MonoBehaviour {
 
 	public float speed=10f;
-	public Rigidbody playerRigidbody;
+	private Rigidbody playerRigidbody;
 
 	// Use this for initialization
 	void Start () {
+		playerRigidbody = GetComponent<Rigidbody>();
 
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if(Input.GetKey(KeyCode.W)){
-			playerRigidbody.AddForce(0,0,speed);
-		}
-		if(Input.GetKey(KeyCode.A)){
-			playerRigidbody.AddForce(-speed,0,0);
-		}
-		if(Input.GetKey(KeyCode.S)){
-			playerRigidbody.AddForce(0,0,-speed);
-		}
-		if(Input.GetKey(KeyCode.D)){
-			playerRigidbody.AddForce(speed,0,0);
-		}
+		
+		float inputX = Input.GetAxis("Horizontal");
+
+		float inputZ = Input.GetAxis("Vertical");
+
+		float fallSpeed = playerRigidbody.velocity.y;
+
+		Vector3 velocity = new Vector3(inputX,0,inputZ);
+		velocity = velocity * speed;
+		// (inputX*speed,0*speed,inputZ*speed)
+
+		velocity.y=fallSpeed;
+		// (inputX*speed,fallSpeed,inputZ*speed)
+
+		playerRigidbody.velocity = velocity;
 	}
 }
