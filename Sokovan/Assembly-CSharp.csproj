@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Player.cs" />
+     <Compile Include="Assets\Rotator.cs" />
  <Reference Include="UnityEngine.Analytics">
  <HintPath>/Applications/Unity/Hub/Editor/2017.1.5f1/Unity.app/Contents/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
  </Reference>
