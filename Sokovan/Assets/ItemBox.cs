@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ItemBox : MonoBehaviour {
 
+	public bool isOverlaped = false;
+
 	private Renderer myRenderer;
 
 	public Color touchColor;
@@ -24,6 +26,7 @@ public class ItemBox : MonoBehaviour {
 	
 	void OnTriggerEnter(Collider other){
 		if(other.tag=="EndPoint"){
+			isOverlaped = true;
 			myRenderer.material.color=touchColor;
 
 		}
@@ -32,6 +35,7 @@ public class ItemBox : MonoBehaviour {
 	//OnTriggerExit는 충돌했다가 떼어질 때
 	void OnTriggerExit(Collider other){
 		if(other.tag=="EndPoint"){
+			isOverlaped = false;
 			myRenderer.material.color=originalColor;
 
 		}
@@ -40,6 +44,7 @@ public class ItemBox : MonoBehaviour {
 	//OnTriggerStay는 충돌하고 있는 동안. 즉 붙어있는 동안.
 	void OnTriggerStay(Collider other){
 		if(other.tag=="EndPoint"){
+			isOverlaped = true;
 			myRenderer.material.color=touchColor;
 
 		}
